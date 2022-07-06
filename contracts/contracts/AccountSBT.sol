@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.11;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 // Errors
@@ -11,8 +11,10 @@ error TokenDoesNotExist(uint256 id);
 error ExistingToken();
 /// Transfers Disallowed
 error TransferDisabled();
+/// Not Token Owner
+error NotTokenOwner();
 
-contract AccountSBT is AccessControl, ERC721Burnable {
+contract AccountSBT is AccessControl, ERC721 {
 
   constructor() ERC721("Move Profile", "MOVE") {
     _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -55,6 +57,12 @@ contract AccountSBT is AccessControl, ERC721Burnable {
     mintCount = mintCount + 1;
   }
 
+  function burn(uint256 id) external {
+    if (ownerOf(tokenId) != msg.sender) revert NotTokenOwner() 
+    accountToId[id] = address(0);
+    _burn(id);
+  }
+
   // Revert NFT transfers  
   function _beforeTokenTransfer(address, address, uint256) internal virtual override {
     revert TransferDisabled();
@@ -62,7 +70,6 @@ contract AccountSBT is AccessControl, ERC721Burnable {
 
   
   // @TODO
-  // remove accountToId when burn
   // IPFS METAdata
   // profile, follwer, follwing,
 
