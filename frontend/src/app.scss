@@ -223,9 +223,15 @@ nav {
 }
 
 //profile rides
+.ride-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0 12px;
+}
 .profile-rides {
-	width: 500px;
-	margin: 0 auto;
+	// width: 500px;
+	// margin: 0 auto;
+
 	h1 {
 		font-size: 28px;
 		font-weight: 500;
@@ -280,5 +286,31 @@ nav {
 			width: 100%;
 			object-fit: cover;
 		}
+	}
+}
+//Media queries 775px and below
+@media only screen and (max-width: 775px) {
+	.profile-details,
+	.achievement-club {
+		flex-direction: column;
+	}
+	.achievements {
+		margin-bottom: 2rem;
+	}
+	.profile-info {
+		margin-bottom: 2rem;
+	}
+	.level-card {
+		margin-top: 0 !important;
+		width: 300px !important;
+		margin-bottom: 2rem;
+	}
+	.profile-rides {
+		width: 100%;
+	}
+	.ride-grid {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		// gap: 0 12px;
 	}
 }
