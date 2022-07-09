@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Logo from '../../../static/Logo.svg';
-	import Bitcoin from '../../../static/bitcoin.svg';
-	import Chainlink from '../../../static/chainlink.svg';
-	import Ethereum from '../../../static/ethereum.svg';
-	import Filecoin from '../../../static/filecoin.svg';
+	import Logo from '$lib/assets/Logo.svelte';
+	import Bitcoin from '$lib/assets/bitcoin.svelte';
+	import Chainlink from '$lib/assets/chainlink.svelte';
+	import Ethereum from '$lib/assets/ethereum.svelte';
+	import Filecoin from '$lib/assets/filecoin.svelte';
 </script>
 
 <footer class="text-center py-12">

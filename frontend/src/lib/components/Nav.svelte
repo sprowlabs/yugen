@@ -8,7 +8,7 @@
 	} from '$lib/stores/provider';
 	import { balanceOnBlock } from '$lib/stores/state';
 	import { formatEther } from 'ethers/lib/utils';
-	import Logo from '../../../static/Logo.svg';
+	import Logo from '$lib/assets/Logo.svelte';
 	import Icon from '@iconify/svelte';
 </script>
 
