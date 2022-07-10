@@ -13,6 +13,8 @@ error ExistingToken();
 error TransferDisabled();
 /// Not Token Owner
 error NotTokenOwner();
+/// Not Token Owner
+error NotSBTForWallet();
 
 contract AccountSBT is AccessControl, ERC721 {
 
@@ -50,33 +52,34 @@ contract AccountSBT is AccessControl, ERC721 {
     emit UpdateAttribute(id, key, value);
   }
 
-  function mint() external {
+  function mint(string calldata uri) external {
     if (balanceOf(msg.sender) > 0) revert ExistingToken();
     _mint(msg.sender, mintCount);
+    _tokenURI[mintCount] = uri;
     accountToId[msg.sender] = mintCount;
     mintCount = mintCount + 1;
   }
 
   function burn(uint256 id) external {
-    if (ownerOf(tokenId) != msg.sender) revert NotTokenOwner() 
-    accountToId[id] = address(0);
+    if (ownerOf(id) != msg.sender) revert NotTokenOwner();
+    accountToId[msg.sender] = 0;
     _burn(id);
   }
 
-  // Revert NFT transfers  
+  // Revert NFT transfers  public view override 
   function _beforeTokenTransfer(address, address, uint256) internal virtual override {
     revert TransferDisabled();
   }
-
   
-  // @TODO
-  // IPFS METAdata
-  // profile, follwer, follwing,
+  mapping(uint256 => string) internal _tokenURI;
 
-  mapping(uint256 => bytes32) internal tokenURIHash;
   function tokenURI(uint256 id) public view override returns (string memory) {
-    // fix encoding
-    return string(abi.encodePacked("ipfs://", tokenURIHash[id]));
+      return _tokenURI[id];
   }
 
+  function updateURI(string memory uri) external {
+    uint256 id = accountToId[msg.sender];
+    if (id == 0) revert NotSBTForWallet();
+    _tokenURI[id] = uri;
+  }
 }
