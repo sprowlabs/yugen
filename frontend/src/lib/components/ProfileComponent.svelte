@@ -3,7 +3,7 @@
 	import Icon from '@iconify/svelte';
 </script>
 
-<section class="profile-details flex justify-between mt-20">
+<section class="profile-details flex justify-between mt-20 mb-16">
 	<div class="profile-info">
 		<img
 			class="profile-img"

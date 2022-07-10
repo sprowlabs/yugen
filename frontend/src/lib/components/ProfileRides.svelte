@@ -42,50 +42,52 @@
 			>Sync Rides <Icon icon="eva:sync-outline" color="white" class="icon" /></a
 		>
 	</div>
-	{#each rides as ride}
-		<div class="ride-card">
-			<div class="rider-info flex mb-4">
-				<img
-					class="rider-img"
-					src="https://images.squarespace-cdn.com/content/v1/5e10f555f51cd16ca72b83f8/1578233571971-3AIYFYIJEG8GXF3KG3SF/female-cyclist-portrait.jpg"
-					alt=""
-				/>
-				<div class="ml-4">
-					<h4 class="rider-name">Richard Daniels</h4>
-					<h4 class="timestamp">{ride.dateTime} - {ride.location}</h4>
-					<h4 class="level-reward">
-						Level: {ride.level} <span class="ml-2">Rewards: {ride.rewards}</span>
-					</h4>
-				</div>
-			</div>
-			<div class="ride-title-stats">
-				<div>
-					<h2 class="mb-2">{ride.title}</h2>
-					<div class="stats flex justify-between items-center">
-						<ul class="stats-list flex space-x-4">
-							<li>
-								<h4>Distance</h4>
-								<h3>{ride.distance}</h3>
-							</li>
-							<li>
-								<h4>XP Earned</h4>
-								<h3>{ride.xp}xp</h3>
-							</li>
-							<li>
-								<h4>Time</h4>
-								<h3>{ride.time}</h3>
-							</li>
-						</ul>
-						<Icon icon="bi:share-fill" color="#404040" width="20" />
-					</div>
-				</div>
-				<div class="map">
+	<div class="ride-grid">
+		{#each rides as ride}
+			<div class="ride-card">
+				<div class="rider-info flex mb-4">
 					<img
-						src="https://www.mamilian.bike/wp-content/uploads/2020/07/strava-routes.png"
+						class="rider-img"
+						src="https://images.squarespace-cdn.com/content/v1/5e10f555f51cd16ca72b83f8/1578233571971-3AIYFYIJEG8GXF3KG3SF/female-cyclist-portrait.jpg"
 						alt=""
 					/>
+					<div class="ml-4">
+						<h4 class="rider-name">Richard Daniels</h4>
+						<h4 class="timestamp">{ride.dateTime} - {ride.location}</h4>
+						<h4 class="level-reward">
+							Level: {ride.level} <span class="ml-2">Rewards: {ride.rewards}</span>
+						</h4>
+					</div>
+				</div>
+				<div class="ride-title-stats">
+					<div>
+						<h2 class="mb-2">{ride.title}</h2>
+						<div class="stats flex justify-between items-center">
+							<ul class="stats-list flex space-x-4">
+								<li>
+									<h4>Distance</h4>
+									<h3>{ride.distance}</h3>
+								</li>
+								<li>
+									<h4>XP Earned</h4>
+									<h3>{ride.xp}xp</h3>
+								</li>
+								<li>
+									<h4>Time</h4>
+									<h3>{ride.time}</h3>
+								</li>
+							</ul>
+							<Icon icon="bi:share-fill" color="#404040" width="20" />
+						</div>
+					</div>
+					<div class="map">
+						<img
+							src="https://www.mamilian.bike/wp-content/uploads/2020/07/strava-routes.png"
+							alt=""
+						/>
+					</div>
 				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	</div>
 </section>

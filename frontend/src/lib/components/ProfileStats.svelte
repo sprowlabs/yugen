@@ -34,7 +34,7 @@
 	];
 </script>
 
-<section class="py-24">
+<section class="mb-8">
 	<div class="achievement-club flex justify-between">
 		<div class="achievements">
 			<h3>Achievements</h3>
@@ -59,7 +59,7 @@
 			</ul>
 		</div>
 	</div>
-	<div class="pending py-12">
+	<div class="pending mb-8">
 		<h3>Pending...</h3>
 		<ul class="flex space-x-4">
 			{#each achievements as achievement}
