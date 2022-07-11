@@ -2,15 +2,29 @@
 import {
     user
 } from "./store.js";
-export let picture;
 
- function mint_profile()
-{
-    console.log($user.username)
+import {
+    store_picture,
+    store_json
+} from '$lib/stores/web3_storage';
 
-    
+export let picture_file;
+
+async function mint_profile(name, username, handle, bio) {
+
+    const imageURI = await store_picture(picture_file);
+    console.log(imageURI)
+
+    const jsonString = JSON.stringify({
+        name: `${ name }`,
+        username: `${username}`,
+        handle: `${ handle }`,
+        bio: `${bio}`,
+    });
+    const jsonURI = await store_json(jsonString);
+
+    console.log("exit after ")
 }
-
 </script>
 
 <form class="signup-form">
@@ -27,22 +41,23 @@ export let picture;
         <label>Username </label>
     </div>
     <div class="datainput">
-        <input class="validate" id="wa_email" name="email" type="email" />
+        <input class="validate" id="wa_email" name="email" type="email" bind:value={$user.handle}/>
         <span class="highlight"></span><span class="bar"></span>
         <label>SocialMedia Handle</label>
     </div>
     <div class="datainput">
-        <textarea id='wa_textarea' placeholder='' maxlength='5000' row='1' bind:value={$user.Handle}></textarea>
+        <textarea id='wa_textarea' placeholder='' maxlength='5000' row='1' bind:value={$user.bio}></textarea>
         <span class="highlight"></span><span class="bar"></span>
         <label>Description</label>
     </div>
 
-    <a class="send_form" href="javascript:void" type="submit" title="Mint Button "  on:click={()=>{mint_profile()}}>Mint</a>
+    <a class="send_form" href="javascript:void" type="submit" title="Mint Button "  on:click={()=>{mint_profile($user.name , $user.username , $user.handle , $user.bio)}}>Mint</a>
     <div id="text-info"></div>
 
 </form>
 
 <!--***************STYLING BELOW ****************  -->
+
  <style>
 .content {
     display: grid;

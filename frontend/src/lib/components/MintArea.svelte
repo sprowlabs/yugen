@@ -1,9 +1,6 @@
 <script>
-import {
-    user
-} from "./store.js";
 import Form from '$lib/components/Form.svelte';
-let result, fileinput;
+let result, fileinput , picture_file;
 let chooser_text = "Choose Image";  
 
 let status = '';
@@ -30,6 +27,7 @@ const onFileSelected = (e) => {
     reader.onload = e => {
         result = e.target.result
     };
+	picture_file = e.target.files[0]
 	}
     
 }
@@ -47,7 +45,7 @@ function handle_upload() {
     <img class="avatar" src="{result}" alt="d" />
 
     {handle_upload()}
-    <Form picture={result} />
+    <Form picture_file={picture_file} />
 
     <!-- FOR DEBUGGING  -->
     <!-- <p>{JSON.stringify($user, 0, 2)}</p> -->
